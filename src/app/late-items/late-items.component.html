@@ -1,0 +1,32 @@
+<div class="container p-5">
+  <div class="row justify-content-md-center">
+    <div class="col">
+        <h2>Késő tárgyak (30 napon túl)</h2>
+        <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Termék címe</th>
+            <th scope="col">Kölcsönző neve</th>
+            <th scope="col">Kikölcsönzés napja</th>
+            <th scope="col">Számított késés</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of lateItems">
+            <td>{{ item.id | number }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.borrower.name }}</td>
+            <td>{{ item.borrowDate }}</td>
+            <td>{{ item.delay }} nappal csúszik</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

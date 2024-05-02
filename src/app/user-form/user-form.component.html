@@ -1,0 +1,36 @@
+<div class="container p-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <h4>Felhasználó adatok</h4>
+            <hr>
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <form [formGroup]="userForm">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Név</label>
+                    <input type="text" class="form-control" id="name" name="name" formControlName = "name">
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Telefonszám</label>
+                    <div class="input-group">
+                    <input type="text" class="form-control" id="phone" name="phone" formControlName="phone">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="personalIdNumber" class="form-label">Személyi igazolvány szám</label>
+                    <input type="text" class="form-control" id="personalIdNumber" name="personalIdNumber" formControlName="personalIdNumber">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Lakcím</label>
+                    <input type="text" class="form-control" id="address" name="address" formControlName = "address" rows = "2">
+                </div>
+                <div class="text-end">
+                    <button class="btn btn-outline-primary m-1" (click)="saveUser()">Mentés</button>
+                    <button class="btn btn-outline-info m-1" (click)="backToUserList()">Vissza</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

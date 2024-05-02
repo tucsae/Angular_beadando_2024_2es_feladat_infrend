@@ -1,0 +1,6 @@
+<div class="d-flex main">
+  <sidebar class="container-fluid p-0" (transitionend)="sideBarService.menuTransitionNext()" [ngClass]="{'visibleSidebar':sidebarVisible,'invisibleSidebar':!sidebarVisible}"></sidebar>
+  <div class="d-block w-100">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="container p-5">
+    <div class="row justify-content-md-center">
+        <div class="col">
+            <h2>Felhasználók</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col">
+            <input class="form-control" type="text" [(ngModel)]="searchTerm" (input)="searchUsers()" name="searchTerm" placeholder="Gépelj a kereséshez...">
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Felhasználó neve</th>
+                        <th scope="col">Felhasználó címe</th>
+                        <th scope="col">Felhasználó telefonszáma</th>
+                        <th scope="col">Felhasználó személyigazolvány száma</th>
+                        <th scope="col">Szerkesztés</th>
+                        <th scope="col">Törlés</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of filteredUsers">
+                        <th scope="row">{{ user.id | number }}</th>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.address }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.personalIdNumber }}</td>
+                        <td>
+                            <button [disabled]="!authService.isLoggedIn() || authService.getUserId()" class="btn btn-sm btn-outline-primary"
+                            (click)="navigateToUserForm(user.id)">Szerkesztés</button>
+                        </td>
+                        <td>
+                            <button [disabled]="!authService.isLoggedIn() || authService.getUserId() !== user.id" class="btn btn-sm btn-outline-danger" (click)="deleteUser(user)">Törlés</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

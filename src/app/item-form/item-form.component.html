@@ -1,0 +1,38 @@
+<div class="container p-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <h4>Tárgy adatok</h4>
+            <hr>
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <form [formGroup]="itemForm">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Cím</label>
+                    <input type="text" class="form-control" id="title" name="title" formControlName="title">
+                </div>
+                <div class="mb-3">
+                    <label for="Author" class="form-label">Szerző</label>
+                    <input type="text" class="form-control" id="Author" name="Author" formControlName="Author">
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Kiadás éve</label>
+                    <input type="date" class="form-control" id="date" name="date" formControlName="date">
+                </div>
+                <div class="mb-3">
+                    <label for="category" class="form-label">Típus</label>
+                    <select name="category" class="form-select" formControlName="category">
+                        <option value = "cd">CD</option>
+                        <option value = "kazetta">Kazetta</option>
+                        <option value = "könyv">Könyv</option>
+                    </select>
+                </div>
+                <div class="text-end">
+                    <button class="btn btn-outline-primary m-1" (click)="saveitem()">Mentés</button>
+                    <button class="btn btn-outline-info m-1" (click)="backToItemList()">Vissza</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

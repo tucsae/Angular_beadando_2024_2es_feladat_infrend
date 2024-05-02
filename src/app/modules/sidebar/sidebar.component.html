@@ -1,0 +1,94 @@
+<div class="p-2" id="sidebarContainer" [class.sidebarCollapsed]="!sideBarState">
+    <div class="d-flex flex-row align-items-center justify-content-between sidebarMenuHeaderContainer pb-3"
+        [class.collapsedSidebarMenuHeaderContainer]="(sideBarService.menuTransitionCompleted | async) && !sideBarState">
+        <a [routerLink]="'fooldal'" class="d-flex align-items-center link-dark text-decoration-none"
+            [class.hiddenItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState">
+            <span class="fs-3 custom-text p-0 m-0">Könyvtár</span>
+        </a>
+        <a (click)="menuButtonClicked()" role="button">
+            @if (sideBarState) {
+            <i-feather name="x" class="sidebarMenuIcon"></i-feather>
+            }@else {
+            <i-feather name="menu" class="sidebarMenuIcon"></i-feather>
+            }
+        </a>
+    </div>
+    <ul class="nav nav-pills flex-column mb-auto mt-3">
+        <li class="nav-item" [class.collapsedItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+        [class.text-center]="(sideBarService.menuTransitionCompleted | async) && !sideBarState">
+        <a [routerLink]="'main'" routerLinkActive="nav-link-active" class="nav-link link-dark d-flex flex-row">
+            <i-feather name="monitor"></i-feather>
+            <div [class.hiddenItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+                class="sidebarText ms-1">Főoldal</div>
+        </a>
+        </li>
+        @if(!authService.isLoggedIn()){
+            <li class="nav-item" [class.collapsedItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+                [class.text-center]="(sideBarService.menuTransitionCompleted | async) && !sideBarState">
+                <a [routerLink]="'login'" routerLinkActive="nav-link-active" class="nav-link link-dark d-flex flex-row">
+                    <i-feather name="log-in"></i-feather>
+                    <div [class.hiddenItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+                        class="sidebarText ms-1">Bejelentkezés</div>
+                </a>
+            </li>
+            <li class="nav-item" [class.collapsedItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+            [class.text-center]="(sideBarService.menuTransitionCompleted | async) && !sideBarState">
+            <a [routerLink]="'register'" routerLinkActive="nav-link-active" class="nav-link link-dark d-flex flex-row">
+                <i-feather name="user-plus"></i-feather>
+                <div [class.hiddenItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+                    class="sidebarText ms-1">Regisztráció</div>
+            </a>
+            </li>
+        } @else {
+            <li class="nav-item" [class.collapsedItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+                [class.text-center]="(sideBarService.menuTransitionCompleted | async) && !sideBarState">
+                <a (click)="logout()" class="nav-link link-dark d-flex flex-row">
+                    <i-feather name="log-out"></i-feather>
+                    <div [class.hiddenItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+                        class="sidebarText ms-1">Kijelentkezés</div>
+                </a>
+            </li>
+        }
+        <br>
+        <li class="nav-item" [class.collapsedItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+            [class.text-center]="(sideBarService.menuTransitionCompleted | async) && !sideBarState">
+            <a [routerLink]="'user-list'" routerLinkActive="nav-link-active"
+                class="nav-link link-dark d-flex flex-row">
+                <i-feather name="user"></i-feather>
+                <div [class.hiddenItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+                    class="sidebarText ms-1">Felhasználók</div>
+            </a>
+        </li>
+        <br>
+
+        <li class="nav-item" [class.collapsedItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+        [class.text-center]="(sideBarService.menuTransitionCompleted | async) && !sideBarState">
+        <a [routerLink]="'item-list'" routerLinkActive="nav-link-active"
+            class="nav-link link-dark d-flex flex-row">
+            <i-feather name="file"></i-feather>
+            <div [class.hiddenItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+                class="sidebarText ms-1">Tárgylista</div>
+        </a>
+        </li>
+        @if(authService.isLoggedIn()){
+            <li class="nav-item" [class.collapsedItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+            [class.text-center]="(sideBarService.menuTransitionCompleted | async) && !sideBarState">
+            <a [routerLink]="'item-form'" routerLinkActive="nav-link-active"
+                class="nav-link link-dark d-flex flex-row">
+                <i-feather name="file-plus"></i-feather>
+                <div [class.hiddenItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+                    class="sidebarText ms-1">Új tárgy</div>
+            </a>
+            </li>
+        }
+        <li class="nav-item" [class.collapsedItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+        [class.text-center]="(sideBarService.menuTransitionCompleted | async) && !sideBarState">
+        <a [routerLink]="'late-items'" routerLinkActive="nav-link-active"
+            class="nav-link link-dark d-flex flex-row">
+            <i-feather name="file-minus"></i-feather>
+            <div [class.hiddenItem]="(sideBarService.menuTransitionCompleted | async) && !sideBarState"
+                class="sidebarText ms-1">Késő tárgyak (30 napon túl)</div>
+        </a>
+        </li>
+    </ul>
+</div>

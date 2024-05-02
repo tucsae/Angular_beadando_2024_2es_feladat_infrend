@@ -1,0 +1,101 @@
+<div class="container p-5">
+    <div class="row justify-content-md-center">
+        <div class="col">
+            <h2>Tárgylista</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col">
+            <input class="form-control" type="text" [(ngModel)]="searchTerm" (input)="searchItems()" placeholder="Gépelj a kereséshez...">
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col">
+            <h4>Termékek listája</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Termék kelte</th>
+                        <th scope="col">Termék címe</th>
+                        <th scope="col">Termék szerzője</th>
+                        <th scope="col">Termék típusa</th>
+                        <th scope="col">Termék kölcsönzésének ideje</th>
+                        <th scope="col">Szerkesztés</th>
+                        <th scope="col">Törlés</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of filteredItems">
+                        <th scope="row">{{ item.id | number }}</th>
+                        <td>{{ item.date }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.Author }}</td>
+                        <td>{{ item.category }}</td>
+                        <td>{{ item.borrowDate === null ? 'nincs kikölcsönözve' : item.borrowDate }}</td>
+                        <td><button [disabled]="!authService.isLoggedIn()" class="btn btn-sm btn-outline-primary"
+                            (click)="navigateToItemForm(item.id)">Szerkesztés</button></td>
+                        <td><button [disabled]="!authService.isLoggedIn()" class="btn btn-sm btn-outline-danger" (click)="deleteItem(item)">Törlés</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col">
+            <h4>Elérhető termékek listája</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Termék kelte</th>
+                        <th scope="col">Termék címe</th>
+                        <th scope="col">Termék szerzője</th>
+                        <th scope="col">Termék típusa</th>
+                        <th scope="col">Kölcsönzés</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of availableItems">
+                        <th scope="row">{{ item.id | number }}</th>
+                        <td>{{ item.date }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.Author }}</td>
+                        <td>{{ item.category }}</td>
+                        <td><button [disabled]="!authService.isLoggedIn()" class="btn btn-sm btn-outline-primary" (click)="borrowItem(item.id)">Kölcsönzés</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col">
+            <h4>Kölcsönzött termékek listája</h4>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Termék kelte</th>
+                        <th scope="col">Termék címe</th>
+                        <th scope="col">Termék szerzője</th>
+                        <th scope="col">Termék típusa</th>
+                        <th scope="col">Visszahozás</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of loanedItems">
+                        <th scope="row">{{ item.id | number }}</th>
+                        <td>{{ item.date }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.Author }}</td>
+                        <td>{{ item.category }}</td>
+                        <td><button [disabled]="!authService.isLoggedIn()" class="btn btn-sm btn-outline-primary" (click)="returnItem(item.id)">Visszahozás</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
